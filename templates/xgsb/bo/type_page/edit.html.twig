@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TypePage{% endblock %}
+
+{% block body %}
+    <h1>Edit TypePage</h1>
+
+    {{ include('xgsb/bo/type_page/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_x_g_s_b_b_o_type_page_index') }}">back to list</a>
+
+    {{ include('xgsb/bo/type_page/_delete_form.html.twig') }}
+{% endblock %}

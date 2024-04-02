@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeModule index{% endblock %}
+
+{% block body %}
+    <h1>TypeModule index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_module in type_modules %}
+            <tr>
+                <td>{{ type_module.id }}</td>
+                <td>{{ type_module.Name }}</td>
+                <td>{{ type_module.Code }}</td>
+                <td>{{ type_module.Description }}</td>
+                <td>
+                    <a href="{{ path('app_x_g_s_b_b_o_type_module_show', {'id': type_module.id}) }}">show</a>
+                    <a href="{{ path('app_x_g_s_b_b_o_type_module_edit', {'id': type_module.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_x_g_s_b_b_o_type_module_new') }}">Create new</a>
+{% endblock %}
