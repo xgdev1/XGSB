@@ -1,11 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'xgsb/bo/layout.html.twig' %}
 
-{% block title %}New TypeModule{% endblock %}
+{% block title %}XGSB Backoffice - Nouveau Type Module {% endblock %}
 
 {% block body %}
-    <h1>Create new TypeModule</h1>
-
-    {{ include('xgsb/bo/type_module/_form.html.twig') }}
-
-    <a href="{{ path('app_x_g_s_b_b_o_type_module_index') }}">back to list</a>
+<div class="card">
+    <div class="card-header">
+        <h1>Nouveau Type Module</h1>
+    </div>
+    <div class="card-body">
+        {{ include('xgsb/bo/type_module/_form.html.twig') }}
+    </div>
+    <div class="card-footer">
+        <a href="{{ path('xgsb_bo_type_module_index') }}" class="btn btn-dark">
+            <span class="icon-chevron-left"></span> Retour à la liste
+        </a>
+    </div>
+</div>
 {% endblock %}

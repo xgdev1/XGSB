@@ -1,39 +1,54 @@
-{% extends 'base.html.twig' %}
+{% extends 'xgsb/bo/layout.html.twig' %}
 
-{% block title %}TypeModule index{% endblock %}
+{% block title %}XGSB Backoffice - List Type Module {% endblock %}
 
 {% block body %}
-    <h1>TypeModule index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Code</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for type_module in type_modules %}
-            <tr>
-                <td>{{ type_module.id }}</td>
-                <td>{{ type_module.Name }}</td>
-                <td>{{ type_module.Code }}</td>
-                <td>{{ type_module.Description }}</td>
-                <td>
-                    <a href="{{ path('app_x_g_s_b_b_o_type_module_show', {'id': type_module.id}) }}">show</a>
-                    <a href="{{ path('app_x_g_s_b_b_o_type_module_edit', {'id': type_module.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_x_g_s_b_b_o_type_module_new') }}">Create new</a>
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h1>Liste des types de module</h1>
+            <a href="{{ path('xgsb_bo_type_module_new') }}" class="btn btn-primary align-self-center">
+                <span class="icon-plus-outline"></span>
+                Créer un nouveau type
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for type_module in type_modules %}
+                <tr>
+                    <td>{{ type_module.id }}</td>
+                    <td>{{ type_module.Name }}</td>
+                    <td>{{ type_module.Code }}</td>
+                    <td>{{ type_module.Description }}</td>
+                    <td>
+                        <a href="{{ path('xgsb_bo_type_module_show', {'id': type_module.id}) }}" class="btn btn-info"
+                           data-bs-toggle="tooltip" data-bs-title="Voir la fiche" data-bs-placement="top">
+                            <span class="icon-document"></span>
+                        </a>
+                        <a href="{{ path('xgsb_bo_type_module_edit', {'id': type_module.id}) }}" class="btn btn-primary"
+                           data-bs-toggle="tooltip" data-bs-title="Modifier" data-bs-placement="top">
+                            <span class="icon-edit"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun type trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

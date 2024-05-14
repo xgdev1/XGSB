@@ -1,0 +1,56 @@
+{% extends 'xgsb/bo/layout.html.twig' %}
+
+{% block title %}XGSB Backoffice - Manage Page {% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h1>Gestion des pages</h1>
+            <a href="{{ path('xgsb_bo_page_new') }}" class="btn btn-primary align-self-center">
+                <span class="icon-plus-outline"></span>
+                Créer une nouvelle page
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Ordre</th>
+                <th>DateCreation</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for page in pages %}
+                <tr>
+                    <td>{{ page.id }}</td>
+                    <td>{{ page.Name }}</td>
+                    <td>{{ page.Title }}</td>
+                    <td>{{ page.Ordre }}</td>
+                    <td>{{ page.DateCreation ? page.DateCreation|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <a href="{{ path('xgsb_bo_page_show', {'id': page.id}) }}" class="btn btn-info"
+                           data-bs-toggle="tooltip" data-bs-title="Voir la fiche" data-bs-placement="top">
+                            <span class="icon-document"></span>
+                        </a>
+                        <a href="{{ path('xgsb_bo_page_edit', {'id': page.id}) }}" class="btn btn-primary"
+                           data-bs-toggle="tooltip" data-bs-title="Modifier" data-bs-placement="top">
+                            <span class="icon-edit"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

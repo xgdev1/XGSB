@@ -1,0 +1,94 @@
+/* Override Bootstrap variables */
+$primary: #751A36;
+$secondary: #222222;
+$link-hover-color:$secondary;
+@import '../../vendor/twbs/bootstrap/scss/bootstrap';
+
+.btn{
+  font-variant: small-caps;
+  line-height:1.8rem;
+}
+
+.vertical-nav {
+  min-width: 17rem;
+  width: 17rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s;
+  .nav{
+    font-size:18px;
+  }
+  .dropdown-menu{
+    transform: none !important;
+    position:static !important;
+    float:none;
+    background: transparent;
+    border:0px;
+  }
+}
+#sidebar.inactive {
+  margin-left: -17rem;
+  box-shadow: 0px 0px 0px;
+}
+
+#content.active {
+  width: 100%;
+  margin: 0;
+}
+
+.page-content {
+  width: calc(100% - 17rem);
+  margin-left: 17rem;
+  transition: all 0.4s;
+  .table tr td{
+    vertical-align: middle;
+  }
+  h2{
+    border:0px;
+    margin-bottom:0px;
+  }
+  .card-title{
+    padding-bottom: 3px;
+    border-bottom:1px solid $primary;
+  }
+}
+
+@media (max-width: 1199px) {
+  #sidebar {
+    display:none;
+  }
+
+  #sidebar.inactive{
+    display:flex;
+    margin-left:0;
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0px;
+    right:0px;
+    left:0px;
+    bottom:0px;
+    z-index:10000;
+  }
+  .accordion{
+    .card-body{
+      padding:10px 2px;
+    }
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #content {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+footer{
+  position:fixed;
+  bottom:0;
+}

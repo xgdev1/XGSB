@@ -1,6 +1,6 @@
-<form method="post" action="{{ path('xgsb_bo_type_page_delete', {'id': type_page.id}) }}" class="d-flex"
+<form method="post" action="{{ path('xgsb_bo_page_delete', {'id': page.id}) }}" class="d-flex"
       onsubmit="return confirm('Etes vous sur de vouloir supprimer cet élément ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ type_page.id) }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ type_module.id) }}">
     <button class="btn btn-danger align-self-center">
         <span class="icon-delete-outline"></span> Supprimer
     </button>

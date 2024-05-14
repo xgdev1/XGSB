@@ -1,39 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends 'xgsb/bo/layout.html.twig' %}
 
-{% block title %}TypePage index{% endblock %}
+{% block title %}XGSB Backoffice - List Type Page {% endblock %}
 
 {% block body %}
-    <h1>TypePage index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Code</th>
-                <th>IsSpecial</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for type_page in type_pages %}
-            <tr>
-                <td>{{ type_page.id }}</td>
-                <td>{{ type_page.Name }}</td>
-                <td>{{ type_page.Code }}</td>
-                <td>{{ type_page.isSpecial ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_x_g_s_b_b_o_type_page_show', {'id': type_page.id}) }}">show</a>
-                    <a href="{{ path('app_x_g_s_b_b_o_type_page_edit', {'id': type_page.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_x_g_s_b_b_o_type_page_new') }}">Create new</a>
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h1>Liste des types de page</h1>
+            <a href="{{ path('xgsb_bo_type_page_new') }}" class="btn btn-primary align-self-center">
+                <span class="icon-plus-outline"></span>
+                Créer un nouveau type
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>IsSpecial</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for type_page in type_pages %}
+                <tr>
+                    <td>{{ type_page.id }}</td>
+                    <td>{{ type_page.Name }}</td>
+                    <td>{{ type_page.Code }}</td>
+                    <td>{{ type_page.isSpecial ? 'Yes' : 'No' }}</td>
+                    <td>
+                        <a href="{{ path('xgsb_bo_type_page_show', {'id': type_page.id}) }}" class="btn btn-info">
+                            <span class="icon-document"></span>
+                        </a>
+                        <a href="{{ path('xgsb_bo_type_page_edit', {'id': type_page.id}) }}" class="btn btn-primary">
+                            <span class="icon-edit"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

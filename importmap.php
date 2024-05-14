@@ -16,6 +16,10 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'xgsb-bo' => [
+        'path' => './assets/xgsb_bo.js',
+        'entrypoint' => true,
+    ],
     'bootstrap' => [
         'version' => '5.3.3',
     ],
@@ -27,6 +31,9 @@ return [
         'type' => 'css',
     ],
     'jquery' => [
-        'version' => '3.7.1',
+        'version' => '2.1.4',
+    ],
+    'bootstrap-tooltip' => [
+        'version' => '3.1.1',
     ],
 ];

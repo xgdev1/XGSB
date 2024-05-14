@@ -21,6 +21,20 @@ class PageRepository extends ServiceEntityRepository
         parent::__construct($registry, Page::class);
     }
 
+    /**
+     * @param Page|null $parent
+     * @return void
+     */
+    public function findLastOrdre($parent){
+        $qb=$this->createQueryBuilder('page')
+            ->orderBy('page.Ordre', "DESC")
+            ->setMaxResults(1);
+        if (!empty($parent)){
+            $qb->andWhere("page.parent=:parent")->setParameters("parent",$parent->getId());
+        }
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
     //    /**
     //     * @return Page[] Returns an array of Page objects
     //     */

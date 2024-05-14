@@ -1,0 +1,51 @@
+{% block choosemedia_widget %}
+    <div class="input-group mb-3">
+
+        <input type="text" class="form-control" {{ block('widget_attributes') }} value="{{ value }}" readonly>
+        <div class="input-group-append">
+            <button class="btn btn-secondary btn-choose-media" type="button" data-iid="{{ id }}">
+                <span class="icon-flow-children"></span> Parcourir le serveur
+            </button>
+            <button class="btn btn-outline-danger btn-clear-media" type="button" data-iid="{{ id }}">
+                <span class="icon-delete-outline"></span> Vider
+            </button>
+        </div>
+    </div>
+    <div class="modal fade" id="CIModal_{{ id }}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block choosemedianl_widget %}
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" {{ block('widget_attributes') }} value="{{ value }}" readonly>
+        <div class="input-group-append">
+            <button class="btn btn-secondary btn-choose-media-nl" type="button" data-iid="{{ id }}"><span class="icon-flow-children"></span> Parcourir le serveur</button>
+        </div>
+    </div>
+    <div class="modal fade" id="CIModal_{{ id }}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block livrefield_widget %}
+    <div class="fiche-livre-select" id="fl_{{ id }}" data-idl="{{ value }}">
+    </div>
+    <div class="input-group mb-3">
+        <input type="hidden" class="form-control" {{ block('widget_attributes') }} value="{{ value }}" readonly>
+        <input type="text" class="form-control" id="search_{{ id }}" placeholder="Recherche par titre des livres" />
+        <div class="input-group-append">
+            <button class="btn btn-secondary btn-livre-field" type="button" data-iid="{{ id }}"><span class="icon-f-loupe"></span> Rechercher Livre</button>
+        </div>
+    </div>
+    <div class="modal fade" id="LModal_{{ id }}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+{% endblock %}

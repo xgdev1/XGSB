@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/x/g/s/b/b/o/type/page')]
+#[Route('/BO/type_page', name:"xgsb_bo_type_page_")]
 class TypePageController extends AbstractController
 {
-    #[Route('/', name: 'app_x_g_s_b_b_o_type_page_index', methods: ['GET'])]
+    #[Route('/', name: 'index', methods: ['GET'])]
     public function index(TypePageRepository $typePageRepository): Response
     {
         return $this->render('xgsb/bo/type_page/index.html.twig', [
@@ -22,7 +22,7 @@ class TypePageController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_x_g_s_b_b_o_type_page_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $typePage = new TypePage();
@@ -33,7 +33,7 @@ class TypePageController extends AbstractController
             $entityManager->persist($typePage);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_x_g_s_b_b_o_type_page_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('xgsb_bo_type_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('xgsb/bo/type_page/new.html.twig', [
@@ -42,7 +42,7 @@ class TypePageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_x_g_s_b_b_o_type_page_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(TypePage $typePage): Response
     {
         return $this->render('xgsb/bo/type_page/show.html.twig', [
@@ -50,7 +50,7 @@ class TypePageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_x_g_s_b_b_o_type_page_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, TypePage $typePage, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TypePageType::class, $typePage);
@@ -59,7 +59,7 @@ class TypePageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_x_g_s_b_b_o_type_page_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('xgsb_bo_type_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('xgsb/bo/type_page/edit.html.twig', [
@@ -68,7 +68,7 @@ class TypePageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_x_g_s_b_b_o_type_page_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, TypePage $typePage, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$typePage->getId(), $request->getPayload()->get('_token'))) {
@@ -76,6 +76,6 @@ class TypePageController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_x_g_s_b_b_o_type_page_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('xgsb_bo_type_page_index', [], Response::HTTP_SEE_OTHER);
     }
 }

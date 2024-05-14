@@ -1,13 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends 'xgsb/bo/layout.html.twig' %}
 
-{% block title %}Edit TypePage{% endblock %}
+{% block title %}XGSB Backoffice - Type Page Edit{% endblock %}
 
 {% block body %}
-    <h1>Edit TypePage</h1>
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h1>Modification du Type Page</h1>
+            <div class="d-inline-flex align-content-center">
+                {{ include('xgsb/bo/type_page/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        {{ include('xgsb/bo/type_page/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+    <div class="card-footer">
+        <a href="{{ path('xgsb_bo_type_page_index') }}" class="btn btn-dark align-self-center">
+            <span class="icon-chevron-left"></span> Retour à la liste
+        </a>
+    </div>
 
-    {{ include('xgsb/bo/type_page/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_x_g_s_b_b_o_type_page_index') }}">back to list</a>
 
-    {{ include('xgsb/bo/type_page/_delete_form.html.twig') }}
 {% endblock %}

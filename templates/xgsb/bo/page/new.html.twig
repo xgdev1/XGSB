@@ -1,17 +1,17 @@
 {% extends 'xgsb/bo/layout.html.twig' %}
 
-{% block title %}XGSB Backoffice - Créer Type Page {% endblock %}
+{% block title %}XGSB Backoffice - Nouvelle Page{% endblock %}
 
 {% block body %}
 <div class="card">
     <div class="card-header">
-        <h1>Nouveau Type de Page</h1>
+        <h1>Nouvelle Page</h1>
     </div>
     <div class="card-body">
-        {{ include('xgsb/bo/type_page/_form.html.twig') }}
+        {{ include('xgsb/bo/page/_form.html.twig') }}
     </div>
     <div class="card-footer">
-        <a href="{{ path('xgsb_bo_type_page_index') }}" class="btn btn-dark">
+        <a href="{{ path('xgsb_bo_page_index') }}" class="btn btn-dark">
             <span class="icon-chevron-left"></span> Retour à la liste
         </a>
     </div>

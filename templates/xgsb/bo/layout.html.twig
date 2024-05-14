@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+        {% block custom_stylesheets %}
+        {% endblock %}
+    {% endblock %}
+    <link href="/icomoon/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Francois+One&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body class="xgsb-bo">
+    <div class="vertical-nav bg-light text-dark d-xl-flex flex-column h-100 p-2" id="sidebar">
+        <div class="m-2">
+            <a href="{{ path("xgsb_bo_home") }}">
+                <img src="{{ asset('images/logo-XGSB.png') }}" alt="logo XGSB" class="img-fluid" />
+            </a>
+        </div>
+        <div class="d-inline-flex d-lg-none">
+            <button class="btn btn-dark btn-close-menu">
+                <span class="icon-delete-outline"></span> Fermer
+            </button>
+        </div>
+        <h4 class="mt-1 text-center">Outils de gestion XGSB</h4>
+
+        {% block menu %}
+        <div class="mt-2 d-flex flex-column">
+            <ul class="nav nav-pills d-flex flex-column">
+                <li class="nav-item">
+                    <a href="{{ path("xgsb_bo_home") }}" class="fs-5 nav-link text-uppercase">
+                        <span class="icon-home"></span>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path("xgsb_bo_page_index") }}" class="fs-5 nav-link text-uppercase">
+                        <span class="icon-tree"></span>
+                        <span>Page</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="mt-auto d-flex flex-column">
+            <ul class="nav nav-pills d-flex flex-column">
+                <li class="nav-item dropdown">
+                    <a href="#" class="fs-5 nav-link text-uppercase dropdown-toggle" id="ParamDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="icon-cog"></span>
+                        <span>Paramètres</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item " href="{{ path('xgsb_bo_type_page_index') }}">
+                            <span class="icon-th-list"></span> Type de page
+                        </a>
+                        <a class="dropdown-item " href="{{ path('xgsb_bo_type_module_index') }}">
+                            <span class="icon-th-list-outline"></span> Type de module
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="mb-0 d-flex text-center small w-100 justify-content-center">
+            XGSB v0.1
+        </div>
+        {% endblock %}
+    </div>
+    <div class="page-content" id="content">
+        {% block illustration %}
+        {% endblock %}
+        <div class="body">
+            <div class="content">
+                <a id="sidebarCollapse" class="btn btn-outline-dark rounded-pill shadow-sm px-4 mb-4 ml-3">
+                    <span class="icon-th-menu"></span><span class="text-uppercase font-weight-bold">{{ 'Menu'|trans }}</span>
+                </a>
+                {% block flashbag %}
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="flash flash-{{ label }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endblock %}
+                <div class="{{container|default('container-fluid')}}">
+                    {% block breadcrumbs %}
+                    {% endblock %}
+                    <div class="row mt-2 mb-5 justify-content-center">
+                        <main id="content" role="main" class="col-md-12 col-lg-11">
+                            {% block body %}
+                            {% endblock %}
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer bg-faded text-muted border-top border-dark pt-3 w-100" role="contentinfo">
+            <div class="{{container|default('container-fluid')}}">
+                <div class="row">
+                    <div class="col-sm-6"><p>
+                            &copy; {{ "now"|date("Y") }} XGSB&nbsp;/&nbsp;
+                            Réalisé par <a href="https://www.xgdev.fr" title="XGDev créateur de site internet">Xavier Govi</a>
+                        </p>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        {% block footer_content%}
+                        {% endblock %}
+                    </div>
+                    <div class="col-sm-2">
+                        <p class="text-right">
+                            <a href="#top" id="back-top" class="text-decoration-none">
+                                <span class="icon-circle-up"></span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('xgsb-bo') }}{% endblock %}
+        {% block custom_javascript %}{% endblock %}
+    {% endblock %}
+</body>
+</html>

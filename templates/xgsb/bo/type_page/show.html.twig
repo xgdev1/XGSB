@@ -1,34 +1,45 @@
-{% extends 'base.html.twig' %}
+{% extends 'xgsb/bo/layout.html.twig' %}
 
-{% block title %}TypePage{% endblock %}
+{% block title %}XGSB Backoffice - Type Page Show {% endblock %}
 
 {% block body %}
-    <h1>TypePage</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ type_page.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ type_page.Name }}</td>
-            </tr>
-            <tr>
-                <th>Code</th>
-                <td>{{ type_page.Code }}</td>
-            </tr>
-            <tr>
-                <th>IsSpecial</th>
-                <td>{{ type_page.isSpecial ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_x_g_s_b_b_o_type_page_index') }}">back to list</a>
-
-    <a href="{{ path('app_x_g_s_b_b_o_type_page_edit', {'id': type_page.id}) }}">edit</a>
-
-    {{ include('xgsb/bo/type_page/_delete_form.html.twig') }}
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h1>TypePage</h1>
+            <div class="d-inline-flex align-content-center">
+                <a href="{{ path('xgsb_bo_type_page_edit', {'id': type_page.id}) }}" class="btn btn-primary align-self-center">
+                    <span class="icon-edit"></span> Modifier
+                </a>
+                {{ include('xgsb/bo/type_page/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ type_page.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ type_page.Name }}</td>
+                </tr>
+                <tr>
+                    <th>Code</th>
+                    <td>{{ type_page.Code }}</td>
+                </tr>
+                <tr>
+                    <th>IsSpecial</th>
+                    <td>{{ type_page.isSpecial ? 'Yes' : 'No' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <a href="{{ path('xgsb_bo_type_page_index') }}" class="btn btn-dark align-self-center">
+            <span class="icon-chevron-left"></span> Retour à la liste
+        </a>
+    </div>
 {% endblock %}

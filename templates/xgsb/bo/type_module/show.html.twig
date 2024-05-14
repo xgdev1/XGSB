@@ -1,12 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'xgsb/bo/layout.html.twig' %}
 
-{% block title %}TypeModule{% endblock %}
+{% block title %}XGSB Backoffice - Fiche Module type{% endblock %}
 
 {% block body %}
-    <h1>TypeModule</h1>
-
-    <table class="table">
-        <tbody>
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h1>Fiche de type de module</h1>
+            <div class="d-inline-flex align-content-center">
+                <a href="{{ path('xgsb_bo_type_module_edit', {'id': type_module.id}) }}" class="btn btn-primary align-self-center">
+                    <span class="icon-edit"></span> Modifier
+                </a>
+                {{ include('xgsb/bo/type_module/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ type_module.id }}</td>
@@ -23,12 +34,13 @@
                 <th>Description</th>
                 <td>{{ type_module.Description }}</td>
             </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_x_g_s_b_b_o_type_module_index') }}">back to list</a>
-
-    <a href="{{ path('app_x_g_s_b_b_o_type_module_edit', {'id': type_module.id}) }}">edit</a>
-
-    {{ include('xgsb/bo/type_module/_delete_form.html.twig') }}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <a href="{{ path('xgsb_bo_type_module_index') }}" class="btn btn-dark">
+            <span class="icon-chevron-left"></span> Retour à la liste
+        </a>
+    </div>
+</div>
 {% endblock %}
