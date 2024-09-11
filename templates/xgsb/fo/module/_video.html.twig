@@ -1,0 +1,16 @@
+<div class="module-media">
+    <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-12 justify-content-center">
+            {% if title is not empty %}
+                <h2 class="text-center px-md-2">{{ title }}</h2>
+            {% endif %}
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-10">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        {{ video|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

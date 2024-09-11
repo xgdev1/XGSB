@@ -1,0 +1,19 @@
+{% extends 'xgsb/bo/layout.html.twig' %}
+
+{% block title %}XGSB Backoffice - Nouveau bloc{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        <h1>{{ module.Title }}</h1>
+    </div>
+    <div class="card-body">
+        {{ include('xgsb/bo/page/_form.html.twig') }}
+    </div>
+    <div class="card-footer">
+        <a href="{{ path('xgsb_bo_page_show',{"id": page.id}) }}" class="btn btn-dark">
+            <span class="icon-chevron-left"></span> Retour à la liste
+        </a>
+    </div>
+</div>
+{% endblock %}

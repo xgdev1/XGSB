@@ -42,7 +42,11 @@ class Page
     private ?TypePage $Type = null;
 
     #[ORM\OneToMany(targetEntity: Module::class, mappedBy: 'Page', orphanRemoval: true)]
+    #[ORM\OrderBy(['Ordre' => 'ASC'])]
     private Collection $Modules;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -195,6 +199,18 @@ class Page
                 $module->setPage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

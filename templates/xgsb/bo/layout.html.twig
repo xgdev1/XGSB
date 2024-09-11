@@ -9,11 +9,14 @@
         {% endblock %}
     {% endblock %}
     <link href="/icomoon/style.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Francois+One&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
 </head>
 <body class="xgsb-bo">
-    <div class="vertical-nav bg-light text-dark d-xl-flex flex-column h-100 p-2" id="sidebar">
+    <div class="vertical-nav bg-light text-dark d-xl-flex flex-column h-100 p-2"
+         id="sidebar">
         <div class="m-2">
             <a href="{{ path("xgsb_bo_home") }}">
                 <img src="{{ asset('images/logo-XGSB.png') }}" alt="logo XGSB" class="img-fluid" />
@@ -41,10 +44,22 @@
                         <span>Page</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ path("xgsb_bo_media_index") }}" class="fs-5 nav-link text-uppercase">
+                        <span class="icon-image"></span>
+                        <span>Gestion Media</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="mt-auto d-flex flex-column">
             <ul class="nav nav-pills d-flex flex-column">
+                <li class="nav-item">
+                    <a href="{{ path("xgsb_bo_manageuser_index") }}" class="fs-5 nav-link text-uppercase">
+                        <span class="icon-user"></span>
+                        <span>Gestion utilisateur</span>
+                    </a>
+                </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="fs-5 nav-link text-uppercase dropdown-toggle" id="ParamDropdown" role="button"
                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,9 +85,9 @@
     <div class="page-content" id="content">
         {% block illustration %}
         {% endblock %}
-        <div class="body">
+        <div class="body pb-4">
             <div class="content">
-                <a id="sidebarCollapse" class="btn btn-outline-dark rounded-pill shadow-sm px-4 mb-4 ml-3">
+                <a id="sidebarCollapse" class="btn btn-outline-dark rounded-pill shadow-sm px-4 mb-4 ml-3" href="#">
                     <span class="icon-th-menu"></span><span class="text-uppercase font-weight-bold">{{ 'Menu'|trans }}</span>
                 </a>
                 {% block flashbag %}

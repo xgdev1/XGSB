@@ -32,20 +32,3 @@
         </div>
     </div>
 {% endblock %}
-{% block livrefield_widget %}
-    <div class="fiche-livre-select" id="fl_{{ id }}" data-idl="{{ value }}">
-    </div>
-    <div class="input-group mb-3">
-        <input type="hidden" class="form-control" {{ block('widget_attributes') }} value="{{ value }}" readonly>
-        <input type="text" class="form-control" id="search_{{ id }}" placeholder="Recherche par titre des livres" />
-        <div class="input-group-append">
-            <button class="btn btn-secondary btn-livre-field" type="button" data-iid="{{ id }}"><span class="icon-f-loupe"></span> Rechercher Livre</button>
-        </div>
-    </div>
-    <div class="modal fade" id="LModal_{{ id }}" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-            </div>
-        </div>
-    </div>
-{% endblock %}

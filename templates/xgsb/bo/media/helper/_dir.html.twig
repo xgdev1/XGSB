@@ -1,0 +1,24 @@
+{% if dirs.count>0 %}
+    {% set collapse="collapse"~ current|replace({'/':'--'}) %}
+{% endif %}
+<li class="list-group-item list-group-flush">
+    <div class="label d-flex justify-content-between">
+        <a href="#" class="text-decoration-none dirBtn" data-current="{{ current }}" data-dir="{{ dir }}"
+           {% if collapse is defined %}data-collapse="{{ collapse }}"{% endif %}>
+            <span class="icon-folder1"></span> {{ dir }}
+        </a>
+    {% if dirs.count>0 %}
+        <a class="text-decoration-none" data-bs-toggle="collapse" href="#{{ collapse }}"
+           role="button" aria-expanded="false" aria-controls="{{ collapse }}">
+            <span class="icon-plus-outline"></span>
+        </a>
+    </div>
+    <div class="collapse" id="{{ collapse }}">
+        <ul class="list-group list-group-flush">
+            {% for dir in dirs %}
+                {{ render(controller("App\\Controller\\XGSB\\BO\\MediaController::directory",{"dir": dir.Filename, "current": current})) }}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</li>

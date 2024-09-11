@@ -1,0 +1,22 @@
+{% extends 'xgsb/fo/layout.html.twig' %}
+
+{% block title %}XGSB {{ page.title }}{% endblock %}
+
+{% block body %}
+    <div class="container pb-5">
+        <div class="row justify-content-center g-0">
+            {% for module in page.Modules %}
+                <div class="col-12 col-lg-{{ module.colWidth }}" >
+                    <div class="py-5 px-4 my-3" id="{{ module.Type.code }}-{{ module.id }}">
+                        {% if module.type.code != "metier"%}
+                            {{ render(controller("App\\Controller\\XGSB\\FO\\ModuleController::index",
+                                { 'module': module.id })) }}
+                        {% else %}
+                            {{ include('xgsb/fo/metier/_' ~ page.type.code ~ '.html.twig') }}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

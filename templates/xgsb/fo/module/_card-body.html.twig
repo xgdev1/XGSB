@@ -1,0 +1,6 @@
+<div class="card-body">
+    {% if subtitle is not empty %}
+        <h3 class="card-title">{{ subtitle }}</h3>
+    {% endif %}
+    {{ text|raw }}
+</div>

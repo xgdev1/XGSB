@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+        {% block custom_stylesheets %}
+        {% endblock %}
+    {% endblock %}
+    <link href="/icomoon/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+</head>
+<body class="xgsb-fo">
+    <header class="mb-2 shadow pt-3">
+        <div class="container">
+            <div class="row justify-content-center align-content-center">
+                <div class="col-12 col-md-4">
+                    <a href="{{ path("xgsb_fo_home") }}">
+                        <img src="{{ asset('images/logo-XGSB.png') }}" alt="logo XGSB" class="img-fluid" />
+                    </a>
+                </div>
+                <div class="d-none d-md-flex col-md-8 d-flex flex-column justify-content-around align-content-end">
+                    <div class="d-flex justify-content-end">
+                        <a href="http://facebook.com" class="text-decoration-none fs-3" target="_blank">
+                            <span class="icon-social-facebook"></span>
+                        </a>
+                    </div>
+                    <h1 class="text-center text-capitalize">XG Site Builder</h1>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 d-flex justify-content-center">
+                    {{ render(controller("App\\Controller\\XGSB\\FO\\MainController::menu")) }}
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="py-5">
+        {% block body %}
+        {% endblock %}
+    </main>
+    <footer class="text-bg-primary py-3 justify-content-center text-center">
+        &copy;{{ "now"|date("Y") }} XGDev
+    </footer>
+{% block javascripts %}
+    {% block importmap %}{{ importmap('xgsb-fo') }}{% endblock %}
+    {% block custom_javascript %}{% endblock %}
+{% endblock %}
+</body>
+</html>

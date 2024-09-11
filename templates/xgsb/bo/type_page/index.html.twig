@@ -32,10 +32,12 @@
                     <td>{{ type_page.Code }}</td>
                     <td>{{ type_page.isSpecial ? 'Yes' : 'No' }}</td>
                     <td>
-                        <a href="{{ path('xgsb_bo_type_page_show', {'id': type_page.id}) }}" class="btn btn-info">
+                        <a href="{{ path('xgsb_bo_type_page_show', {'id': type_page.id}) }}" class="btn btn-info"
+                           data-bs-toggle="tooltip" data-bs-title="Voir la fiche" data-bs-placement="top">
                             <span class="icon-document"></span>
                         </a>
-                        <a href="{{ path('xgsb_bo_type_page_edit', {'id': type_page.id}) }}" class="btn btn-primary">
+                        <a href="{{ path('xgsb_bo_type_page_edit', {'id': type_page.id}) }}" class="btn btn-primary"
+                           data-bs-toggle="tooltip" data-bs-title="Modifier" data-bs-placement="top">
                             <span class="icon-edit"></span>
                         </a>
                     </td>

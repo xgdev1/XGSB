@@ -2,6 +2,7 @@ symfonycasts_sass:
     root_sass:
       - '%kernel.project_dir%/assets/styles/app.scss'
       - '%kernel.project_dir%/assets/styles/xgsb_bo.scss'
+      - '%kernel.project_dir%/assets/styles/xgsb_fo.scss'
     sass_options:
       source_map: true
       style: compressed

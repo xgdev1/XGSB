@@ -20,6 +20,10 @@ return [
         'path' => './assets/xgsb_bo.js',
         'entrypoint' => true,
     ],
+    'xgsb-fo' => [
+        'path' => './assets/xgsb_fo.js',
+        'entrypoint' => true,
+    ],
     'bootstrap' => [
         'version' => '5.3.3',
     ],
@@ -36,4 +40,7 @@ return [
     'bootstrap-tooltip' => [
         'version' => '3.1.1',
     ],
+    'ckeditor'  => [
+        'version' => '4.12.1',
+    ]
 ];

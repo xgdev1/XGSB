@@ -90,6 +90,10 @@ class Module
         return $this;
     }
 
+    public function getParam(string $name, $default = null){
+        return $this->parameters[$name] ?? $default;
+    }
+
     public function getColWidth(): ?int
     {
         return $this->ColWidth;

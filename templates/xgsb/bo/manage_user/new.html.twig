@@ -1,0 +1,19 @@
+{% extends 'xgsb/bo/layout.html.twig' %}
+
+{% block title %}Nouvel Utilisateur - XGSB Backoffice{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-header">
+            <h1>Nouvel Utilisateur</h1>
+        </div>
+        <div class="card-body">
+            {{ include('xgsb/bo/manage_user/_form.html.twig') }}
+        </div>
+        <div class="card-footer">
+            <a href="{{ path('xgsb_bo_manageuser_index') }}" class="btn btn-dark">
+                <span class="icon-chevron-left"></span> Retour à la liste
+            </a>
+        </div>
+    </div>
+{% endblock %}

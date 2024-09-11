@@ -1,0 +1,34 @@
+<div class="toolbar d-flex justify-content-between">
+    <button class="btn btn-primary createDir" data-current="{{ current|default("media") }}" >
+        <span class="icon-folder-add"></span> Créer un répertoire
+    </button>
+    <button class="btn btn-primary addFile" data-current="{{ current|default("media") }}">
+        <span class="icon-document-add"></span> Envoyer un fichier
+    </button>
+    <button class="btn btn-danger deleteDir" data-current="{{ current|default("") }}" >
+        <span class="icon-folder-delete"></span> Supprimer le répertoire
+    </button>
+</div>
+<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+{% for f in files %}
+    {% set fileUrl=current|default("media") ~ "/" ~ f.Filename %}
+    <div class="col">
+        <div class="card my-2 filecard" data-file="{{ fileUrl }}">
+            {% if f.Extension=="jpg" or f.Extension=="png" or f.Extension=="gif" or f.Extension=="jpeg" or f.Extension=="svg" %}
+                <img src="{{ asset(fileUrl) }}" class="card-img-top" data-file="{{ fileUrl }}" />
+            {% elseif f.Extension=="pdf" %}
+                <img src="{{ asset("images/media/pdf.png") }}" class="card-img-top" data-file="{{ fileUrl }}" />
+            {% elseif f.Extension=="xls" or f.Extension=="xlsx" %}
+                <img src="{{ asset("images/media/excel.png") }}" class="card-img-top" data-file="{{ fileUrl }}" />
+            {% elseif f.Extension=="mkv" or f.Extension=="avi" or f.Extension=="mov" %}
+                <img src="{{ asset("images/media/video.png") }}" class="card-img-top" data-file="{{ fileUrl }}" />
+            {% else %}
+                <img src="{{ asset("images/media/unknow.png") }}" class="card-img-top" data-file="{{ fileUrl }}" />
+            {% endif %}
+            <div class="card-body">
+                {{ f.Filename }}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>

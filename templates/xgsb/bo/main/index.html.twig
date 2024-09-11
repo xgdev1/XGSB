@@ -3,6 +3,39 @@
 {% block title %}XGSB Backoffice{% endblock %}
 
 {% block body %}
-    <h1>Welcome</h1>
-    <a href="#" class="btn btn-primary">TEST</a>
+    <div class="card text-bg-primary mb-3">
+        <div class="card-body">
+            <h2 class="card-title">Bienvenue dans l'outils de création XG Site Builder</h2>
+            <p class="card-text">Cette outil vous permettra de gérer tous votre site internet le plus facilement possible.
+                Il s'agit d'un site builder vous permettant de créer votre site page par page en créant des modules sur
+                chaque page.
+            </p>
+        </div>
+    </div>
+    <div class="card-group">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Section Page</h3>
+                <p class="card-text">Cette section vous permet de créer modifier et supprimer les pages</p>
+                <a href="{{ path("xgsb_bo_page_index") }}" class="btn btn-outline-primary">Gerer les pages</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Gestion media</h3>
+                <p class="card-text">Cette section vous permet de gérer les images et documents que vous souhaitez
+                    utiliser dans votre contenu
+                </p>
+                <a href="{{ path("xgsb_bo_media_index") }}" class="btn btn-outline-primary">Gestion des medias</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Gestion utilisateur</h3>
+                <p class="card-text">Cette section vous permet de gérer les utilisateurs de votre site internet
+                </p>
+                <a href="{{ path("xgsb_bo_manageuser_index") }}" class="btn btn-outline-primary">Gestion des utilisateurs</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

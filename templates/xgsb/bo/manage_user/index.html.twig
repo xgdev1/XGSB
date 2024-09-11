@@ -1,0 +1,48 @@
+{% extends 'xgsb/bo/layout.html.twig' %}
+
+{% block title %}Manage User - XGSB Backoffice{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h1>Gestion des utilisateurs</h1>
+            <a href="{{ path('xgsb_bo_manageuser_new') }}" class="btn btn-primary align-self-center">
+                <span class="icon-plus-outline"></span>
+                Créer un nouvel utilisateur
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>
+                        <a href="{{ path('xgsb_bo_manageuser_edit', {'id': user.id}) }}" class="btn btn-primary"
+                           data-bs-toggle="tooltip" data-bs-title="Modifier" data-bs-placement="top">
+                            <span class="icon-edit"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

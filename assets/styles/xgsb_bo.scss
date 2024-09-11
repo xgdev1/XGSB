@@ -1,15 +1,33 @@
 /* Override Bootstrap variables */
-$primary: #751A36;
-$secondary: #222222;
+@import "_custom_color.scss";
 $link-hover-color:$secondary;
+$font-family-sans-serif:"Lato",Arial, sans-serif;
+$font-family-base: "Lora", serif;
+$font-size-base: 1rem;
+$font-size-sm: 1.5rem;
+$font-size-lg: 1rem;
 @import '../../vendor/twbs/bootstrap/scss/bootstrap';
 
+h1,h2, h3, h4, h5, h6{
+  font-family: $font-family-sans-serif;
+}
+
 .btn{
+  font-family: $font-family-sans-serif;
   font-variant: small-caps;
-  line-height:1.8rem;
+  line-height:1rem;
+}
+
+.overflow-400{
+  height: 400px;
+  overflow-y: scroll;
+  border: 1px solid #ced4da;
+  border-right: 0px;
+  padding: 10px;
 }
 
 .vertical-nav {
+  font-family: $font-family-sans-serif;
   min-width: 17rem;
   width: 17rem;
   height: 100vh;
@@ -91,4 +109,5 @@ $link-hover-color:$secondary;
 footer{
   position:fixed;
   bottom:0;
+  background: $white;
 }

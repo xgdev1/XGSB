@@ -1,0 +1,71 @@
+<div class="media">
+    <div class="card">
+        <div class="card-header">
+            <h1>Gestion des media</h1>
+        </div>
+        <div class="card-body">
+            <div class="row align-content-stretch">
+                <div class="col-6 col-md-4">
+                    <div class="card">
+                        <div class="card-header">Repertoire</div>
+                        <ul class="list-group h-100">
+                            {{ render(controller("App\\Controller\\XGSB\\BO\\MediaController::directory",{"dir": "media"})) }}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6 col-md-8" id="contentDir">
+                    {{ include ('xgsb/bo/media/helper/_file-list.html.twig', {'current' : 'media', 'files' : files}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="imgModal" tabindex="-1" >
+        <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Zoom image
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6 col-md-8" id="img-zoom">
+
+                        </div>
+                        <div class="col-6 col-md-4 d-flex flex-column">
+                            <a href="#" class="btn btn-primary" id="btnSelect" data-file="" data-iid="">
+                                <span class="icon-tick"></span>
+                                Selectionner
+                            </a>
+                            <a href="#" class="btn btn-danger mt-3" id="btnRemove" >
+                                <span class="icon-delete"></span>
+                                Supprimer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="formModal" tabindex="-1" >
+        <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Envoie d'image
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!--
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button class="btn btn-primary">
+                        <span class="icon-floppy-disk"></span> {{ button_label|default('Envoyer') }}
+                    </button>
+                    {{ form_end(form) }}
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

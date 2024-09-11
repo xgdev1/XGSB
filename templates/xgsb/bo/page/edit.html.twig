@@ -1,13 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'xgsb/bo/layout.html.twig' %}
 
-{% block title %}Edit Page{% endblock %}
+{% block title %}Modifier {{ page.name }} - XGSB Backoffice{% endblock %}
 
 {% block body %}
-    <h1>Edit Page</h1>
-
-    {{ include('xgsb/bo/page/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_x_g_s_b_b_o_page_index') }}">back to list</a>
-
-    {{ include('xgsb/bo/page/_delete_form.html.twig') }}
+    <div class="card">
+        <div class="card-header">
+            <h1>{{ page.name }}</h1>
+        </div>
+        <div class="card-body">
+            {{ include('xgsb/bo/page/_form.html.twig') }}
+        </div>
+        <div class="card-footer">
+            <a href="{{ path('xgsb_bo_page_index') }}" class="btn btn-dark">
+                <span class="icon-chevron-left"></span> Retour à la liste
+            </a>
+            {{ include('xgsb/bo/page/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}

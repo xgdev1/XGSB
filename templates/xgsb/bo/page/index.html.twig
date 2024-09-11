@@ -21,7 +21,7 @@
                 <th>Name</th>
                 <th>Title</th>
                 <th>Ordre</th>
-                <th>DateCreation</th>
+                <th>Slug</th>
                 <th>actions</th>
             </tr>
             </thead>
@@ -32,7 +32,7 @@
                     <td>{{ page.Name }}</td>
                     <td>{{ page.Title }}</td>
                     <td>{{ page.Ordre }}</td>
-                    <td>{{ page.DateCreation ? page.DateCreation|date('Y-m-d') : '' }}</td>
+                    <td>{{ page.slug}}</td>
                     <td>
                         <a href="{{ path('xgsb_bo_page_show', {'id': page.id}) }}" class="btn btn-info"
                            data-bs-toggle="tooltip" data-bs-title="Voir la fiche" data-bs-placement="top">

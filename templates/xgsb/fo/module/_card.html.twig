@@ -1,0 +1,34 @@
+<div class="card module-card">
+    {% if title is empty %}
+        <div class="card-header">
+            {{ title }}
+        </div>
+    {% endif %}
+    {% if imagePosition=='top' and image is not empty %}
+        <img src="{{ asset(image) }}" class="card-img-top" alt="" />
+    {% endif %}
+    {% if imagePosition=='left' and image is not empty %}
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ asset(image) }}" class="img-fluid rounded-start" alt="" />
+            </div>
+            <div class="col-md-8">
+                {{ include('xgsb/fo/module/_card-body.html.twig') }}
+            </div>
+        </div>
+    {% elseif imagePosition=='right' and image is not empty %}
+        <div class="row g-0">
+            <div class="col-md-8">
+                {{ include('xgsb/fo/module/_card-body.html.twig') }}
+            </div>
+            <div class="col-md-4">
+                <img src="{{ asset(image) }}" class="img-fluid rounded-end" alt="" />
+            </div>
+        </div>
+    {% else %}
+        {{ include('xgsb/fo/module/_card-body.html.twig') }}
+        {% if imagePosition=='bottom' and image is not empty %}
+            <img src="{{ asset(image) }}" class="card-img-bottom" alt="" />
+        {% endif %}
+    {% endif %}
+</div>
