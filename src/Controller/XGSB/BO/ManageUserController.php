@@ -54,15 +54,17 @@ class ManageUserController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $hashedPassword = $passwordHasher->hashPassword($user, $user->getPlainPassword());
+            $user->setPassword($hashedPassword);
             $entityManager->flush();
 
-            return $this->redirectToRoute('xgsb_bo_manageuser_show', ["id" => $user->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('xgsb_bo_manageuser_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('xgsb/bo/manage_user/edit.html.twig', [

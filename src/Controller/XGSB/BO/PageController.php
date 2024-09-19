@@ -93,7 +93,7 @@ class PageController extends AbstractController
     public function index(PageRepository $pageRepository): Response
     {
         return $this->render('xgsb/bo/page/index.html.twig', [
-            'pages' => $pageRepository->findAll(),
+            'pages' => $pageRepository->findBy(["parent" => null], ["Ordre" => "ASC"]),
         ]);
     }
 

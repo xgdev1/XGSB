@@ -1,34 +1,37 @@
-<div class="card module-card">
-    {% if title is empty %}
+<div class="card module-card h-100 {{ classCard }}">
+    {% if title is not empty %}
         <div class="card-header">
             {{ title }}
         </div>
     {% endif %}
     {% if imagePosition=='top' and image is not empty %}
-        <img src="{{ asset(image) }}" class="card-img-top" alt="" />
+        {{ include('xgsb/fo/module/helper/_card-media.html.twig',{"mediaClass": 'card-img-top',
+            'ratio':"ratio-3x2"}) }}
     {% endif %}
     {% if imagePosition=='left' and image is not empty %}
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="{{ asset(image) }}" class="img-fluid rounded-start" alt="" />
+                {{ include('xgsb/fo/module/helper/_card-media.html.twig',{"mediaClass": 'img-fluid rounded-start',
+                    'ratio' : 'ratio-2x3'}) }}
             </div>
             <div class="col-md-8">
-                {{ include('xgsb/fo/module/_card-body.html.twig') }}
+                {{ include('xgsb/fo/module/helper/_card-body.html.twig') }}
             </div>
         </div>
     {% elseif imagePosition=='right' and image is not empty %}
         <div class="row g-0">
             <div class="col-md-8">
-                {{ include('xgsb/fo/module/_card-body.html.twig') }}
+                {{ include('xgsb/fo/module/helper/_card-body.html.twig') }}
             </div>
             <div class="col-md-4">
-                <img src="{{ asset(image) }}" class="img-fluid rounded-end" alt="" />
+                {{ include('xgsb/fo/module/helper/_card-media.html.twig',{"mediaClass": 'img-fluid rounded-end',
+                    'ratio' : 'ratio-2x3'}) }}
             </div>
         </div>
     {% else %}
         {{ include('xgsb/fo/module/_card-body.html.twig') }}
         {% if imagePosition=='bottom' and image is not empty %}
-            <img src="{{ asset(image) }}" class="card-img-bottom" alt="" />
+            {{ include('xgsb/fo/module/helper/_card-media.html.twig',{"mediaClass": 'card-img-bottom', 'ratio':"ratio-3x2"}) }}
         {% endif %}
     {% endif %}
 </div>

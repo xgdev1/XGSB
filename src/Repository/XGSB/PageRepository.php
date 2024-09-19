@@ -30,7 +30,8 @@ class PageRepository extends ServiceEntityRepository
             ->orderBy('page.Ordre', "DESC")
             ->setMaxResults(1);
         if (!empty($parent)){
-            $qb->andWhere("page.parent=:parent")->setParameters("parent",$parent->getId());
+            $qb->andWhere("page.parent=:parent")
+                ->setParameter('parent', $parent->getId());
         }
         return $qb->getQuery()->getOneOrNullResult();
     }

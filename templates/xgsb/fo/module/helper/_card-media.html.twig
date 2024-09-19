@@ -1,0 +1,51 @@
+{% if VideoYT is not empty %}
+    <div class="youtube-container {{ mediaClass }} ratio {{ ratio|default('ratio-4x3') }}">
+        <div id="youtube-player" ></div>
+        <img src="{{ asset(image) }}" class="waiting-image img-fluid" id="waitingimg_{{ module.id }}">
+        <div class="play-button text-secondary" id="playbutton_{{ module.id }}">
+            <span class="icon-play"></span>
+        </div>
+    </div>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        var player_{{ module.id }};
+        function onYouTubeIframeAPIReady() {
+            player_{{ module.id }} = new YT.Player('youtube-player', {
+                height: '100%',
+                width: '100%',
+                videoId: '{{ VideoYT }}',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            document.getElementById('playbutton_{{ module.id }}').addEventListener('click', function() {
+                document.getElementById('waitingimg_{{ module.id }}').style.display = 'none';
+                document.getElementById('playbutton_{{ module.id }}').style.display = 'none';
+                player_{{ module.id }}.playVideo();
+            });
+        }
+
+        var done = false;
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+                setTimeout(stopVideo, 600000);
+                done = true;
+            }
+        }
+        function stopVideo() {
+            player_{{ module.id }}.stopVideo();
+            document.getElementById('waitingimg_{{ module.id }}').style.display = 'block';
+            document.getElementById('playbutton_{{ module.id }}').style.display = 'block';
+        }
+    </script>
+{% elseif VideoMP4 is not empty %}
+    <video controls src="{{ asset(VideoMP4) }}" class="{{ mediaClass }}" autoplay loop poster="{{ asset(image) }}">
+        Vidéo d'illustration
+    </video>
+{% else %}
+    <img src="{{ asset(image) }}" class="{{ mediaClass }} img-fluid" alt="" />
+{% endif %}

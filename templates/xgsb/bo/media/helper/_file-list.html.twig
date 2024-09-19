@@ -22,6 +22,10 @@
                 <img src="{{ asset("images/media/excel.png") }}" class="card-img-top" data-file="{{ fileUrl }}" />
             {% elseif f.Extension=="mkv" or f.Extension=="avi" or f.Extension=="mov" %}
                 <img src="{{ asset("images/media/video.png") }}" class="card-img-top" data-file="{{ fileUrl }}" />
+            {% elseif f.Extension=="mp4" or f.Extension=="MP4"  %}
+                <video src="{{ asset(fileUrl) }}" class="card-img-top" controls>
+                    La video ne fonctionne pas
+                </video>
             {% else %}
                 <img src="{{ asset("images/media/unknow.png") }}" class="card-img-top" data-file="{{ fileUrl }}" />
             {% endif %}

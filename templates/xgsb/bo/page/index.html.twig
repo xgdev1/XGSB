@@ -44,6 +44,25 @@
                         </a>
                     </td>
                 </tr>
+                {% for child in page.childs %}
+                    <tr>
+                        <td>{{ page.id }} ==> {{ child.id }}</td>
+                        <td>{{ child.Name }}</td>
+                        <td>{{ child.Title }}</td>
+                        <td>{{ child.Ordre }}</td>
+                        <td>{{ child.slug}}</td>
+                        <td>
+                            <a href="{{ path('xgsb_bo_page_show', {'id': child.id}) }}" class="btn btn-info"
+                               data-bs-toggle="tooltip" data-bs-title="Voir la fiche" data-bs-placement="top">
+                                <span class="icon-document"></span>
+                            </a>
+                            <a href="{{ path('xgsb_bo_page_edit', {'id': child.id}) }}" class="btn btn-primary"
+                               data-bs-toggle="tooltip" data-bs-title="Modifier" data-bs-placement="top">
+                                <span class="icon-edit"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
             {% else %}
                 <tr>
                     <td colspan="7">no records found</td>

@@ -17,9 +17,9 @@ fos_ck_editor:
             - { name: "Centré", element: [ "h1", "h2", "h3", "p", "a" ], attributes: { class: "text-center" } }
             - { name: "liste stylisé", element: "ul", attributes: { class: "list-group list-group-flush" } }
             - { name: "Element liste stylisé", element: "li", attributes: { class: "list-group-item" } }
-            - { name: "Bouton foncé", element: "a", attributes: { class: "btn btn-outline-dark px-2" } }
+            - { name: "Bouton info", element: "a", attributes: { class: "btn btn-info px-2" } }
             - { name: "Bouton primaire", element: "a", attributes: { class: "btn btn-primary px-2" } }
-            - { name: "Bouton Abonner", element: "a", attributes: { class: "btn btn-primary px-5 btn-abonner" } }
+            - { name: "Bouton secondaire", element: "a", attributes: { class: "btn btn-secondary px-2" } }
 twig:
     form_themes:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'

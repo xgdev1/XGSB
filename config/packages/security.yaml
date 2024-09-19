@@ -3,6 +3,10 @@ security:
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+    role_hierarchy:
+        ROLE_EDITEUR: ROLE_USER
+        ROLE_ADMIN: ROLE_EDITEUR
+        ROLE_SUPERADMIN: ROLE_ADMIN
     providers:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
@@ -16,7 +20,11 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-
+            form_login:
+                login_path: xgsb_login
+                check_path: xgsb_login
+            logout:
+                path: xgsb_logout
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -26,7 +34,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/BO, roles: ROLE_EDITEUR }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

@@ -33,9 +33,13 @@ class ModuleController extends AbstractController
     }
 
     public function makeCard(Module $module){
-        $title=$module->getParam('title');
-        $subtitle=$module->getParam('subtitle');
+        $isVideo=false;
+        $title=$module->getParam('Title');
+        $subtitle=$module->getParam('SubTitle');
         $image=$module->getParam('Image');
+        $VideoMP4=$module->getParam('VideoMP4', null);
+        $VideoYT=$module->getParam('VideoYT', null);
+        $classCard=$module->getParam('ClassCard', null);
         $imagePosition=$module->getParam('ImagePosition');
         $text=$module->getParam('Texte');
         return $this->render('xgsb/fo/module/_card.html.twig',[
@@ -44,6 +48,10 @@ class ModuleController extends AbstractController
             "image"=>$image,
             "imagePosition"=>$imagePosition,
             "text"=>$text,
+            "classCard"=>$classCard,
+            "VideoMP4"=>$VideoMP4,
+            "VideoYT"=>$VideoYT,
+            "module"=>$module
         ]);
     }
 

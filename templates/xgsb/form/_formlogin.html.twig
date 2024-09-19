@@ -1,16 +1,25 @@
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
+<div class="card">
+    <div class="card-body p-3">
+        <form action="{{ path('xgsb_login') }}" method="post">
+            <div class="form-group row">
+                <label for="username" class="col-form-label col-sm-4 required">Email:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-form-label col-sm-4 required">Password:</label>
+                <div class="col-sm-8">
+                    <input type="password" id="password" name="_password" required>
+                </div>
+            </div>
+            {# If you want to control the URL the user is redirected to on success
+                <input type="hidden" name="_target_path" value="/account"> #}
 
-<form action="{{ path('login') }}" method="post">
-    <label for="username">Email:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" required>
-
-    {# If you want to control the URL the user is redirected to on success
-        <input type="hidden" name="_target_path" value="/account"> #}
-
-    <button type="submit">login</button>
-</form>
+            <button type="submit" class="btn btn-primary">login</button>
+        </form>
+    </div>
+</div>
