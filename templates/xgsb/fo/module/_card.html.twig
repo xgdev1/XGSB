@@ -29,7 +29,7 @@
             </div>
         </div>
     {% else %}
-        {{ include('xgsb/fo/module/_card-body.html.twig') }}
+        {{ include('xgsb/fo/module/helper/_card-body.html.twig') }}
         {% if imagePosition=='bottom' and image is not empty %}
             {{ include('xgsb/fo/module/helper/_card-media.html.twig',{"mediaClass": 'card-img-bottom', 'ratio':"ratio-3x2"}) }}
         {% endif %}
