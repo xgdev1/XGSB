@@ -4,6 +4,7 @@ namespace App\Repository\XGSB;
 
 use App\Entity\XGSB\Module;
 use App\Entity\XGSB\Page;
+use App\Entity\XGSB\SectionPage;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -45,6 +46,15 @@ class ModuleRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('m');
         $qb->where('m.Page = :page')
             ->setParameter('page', $page->getId())
+            ->andWhere("m.Ordre = :ordre")
+            ->setParameter('ordre', $ordre);
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    public function findModuleByOrdreSection(SectionPage $sectionPage, int $ordre){
+        $qb = $this->createQueryBuilder('m');
+        $qb->where('m.sectionPage = :page')
+            ->setParameter('page', $sectionPage->getId())
             ->andWhere("m.Ordre = :ordre")
             ->setParameter('ordre', $ordre);
         return $qb->getQuery()->getOneOrNullResult();

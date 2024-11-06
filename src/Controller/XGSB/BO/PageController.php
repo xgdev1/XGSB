@@ -85,13 +85,13 @@ class PageController extends AbstractController
                 $section=$module->getSectionPage();
                 if($section->getModules()->count()==1)
                 {
-                    $lOrder=0;
+                    $lOrder=10;
                 }
                 else
                 {
                     $lOrder=0;
-                    foreach($section->getModules() as $module){
-                        $lOrder=$module->getOrdre();
+                    foreach($section->getModules() as $Pmodule){
+                        $lOrder=$Pmodule->getOrdre();
                     }
                 }
                 if(empty($lOrder)){
@@ -189,7 +189,7 @@ class PageController extends AbstractController
     {
         $oldOrder=$module->getOrdre();
         $newOrder=$oldOrder-10;
-        $upModule=$moduleRepository->findModuleByOrdrePage($module->getPage(),$newOrder);
+        $upModule=$moduleRepository->findModuleByOrdreSection($module->getSectionPage(),$newOrder);
         $module->setOrdre($newOrder);
         $upModule->setOrdre($oldOrder);
         $entityManager->flush();
@@ -201,7 +201,7 @@ class PageController extends AbstractController
     {
         $oldOrder=$module->getOrdre();
         $newOrder=$oldOrder+10;
-        $upModule=$moduleRepository->findModuleByOrdrePage($module->getPage(),$newOrder);
+        $upModule=$moduleRepository->findModuleByOrdreSection($module->getSectionPage(),$newOrder);
         $module->setOrdre($newOrder);
         $upModule->setOrdre($oldOrder);
         $entityManager->flush();

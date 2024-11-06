@@ -26,6 +26,7 @@ class SectionPage
     private ?Page $Page = null;
 
     #[ORM\OneToMany(targetEntity: Module::class, mappedBy: 'sectionPage')]
+    #[ORM\OrderBy(['Ordre' => 'ASC'])]
     private Collection $modules;
 
     #[ORM\Column(nullable: true)]

@@ -8,6 +8,7 @@ use App\Entity\XGSB\SectionPage;
 use App\Entity\XGSB\TypeModule;
 use App\Form\XGSB\ParamModuleType\ParamBannerType;
 use App\Form\XGSB\ParamModuleType\ParamCardType;
+use App\Form\XGSB\ParamModuleType\ParamFlipCardType;
 use App\Form\XGSB\ParamModuleType\ParamImageTextType;
 use App\Form\XGSB\ParamModuleType\ParamTitleType;
 use App\Form\XGSB\ParamModuleType\ParamVideoType;
@@ -65,6 +66,11 @@ class ModuleType extends AbstractType
             case 'card':
                 $form->add('parameters', ParamCardType::class,[
                     'label' => 'Paramètres pour le module carte'
+                ]);
+                break;
+            case 'flipcard':
+                $form->add('parameters', ParamFlipcardType::class,[
+                    'label' =>  'Paramètre nécessaire pour la flip card'
                 ]);
                 break;
             case 'imageText':

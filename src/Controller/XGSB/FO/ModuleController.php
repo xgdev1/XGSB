@@ -16,6 +16,8 @@ class ModuleController extends AbstractController
                 return $this->makeBanner($module);
             case 'card':
                 return $this->makeCard($module);
+            case 'flipcard':
+                return $this->makeFlipCard($module);
             case 'imageText':
                 return $this->makeImageText($module);
             case 'title':
@@ -57,6 +59,15 @@ class ModuleController extends AbstractController
         ]);
     }
 
+    public function makeFlipCard (Module $module){
+        $Front=$module->getParam('Front');
+        $Back=$module->getParam('Back');
+        return $this->render('xgsb/fo/module/_flip_card.html.twig',[
+            "front" => $Front,
+            "back" => $Back,
+        ]);
+    }
+
     public function makeImageText(Module $module){
         $image=$module->getParam('Image');
         $imagePosition=$module->getParam('ImagePosition');
@@ -94,5 +105,4 @@ class ModuleController extends AbstractController
             "widget"=>$Widget,
         ]);
     }
-
 }

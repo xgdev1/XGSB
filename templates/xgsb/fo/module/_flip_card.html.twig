@@ -1,0 +1,28 @@
+<div class="flip-card">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            {{ include('xgsb/fo/module/helper/_card.html.twig', {
+                "title" : front.Title,
+                "classCard" : "frontCard",
+                "image" : front.Image,
+                "imagePosition" : front.ImagePosition,
+                "VideoYT": front.VideoYT,
+                "VideoMP4": front.VideoMP4,
+                "text" : front.Texte,
+                "subtitle" : front.SubTitle
+            }) }}
+        </div>
+        <div class="flip-card-back">
+            {{ include('xgsb/fo/module/helper/_card.html.twig', {
+                "title" : back.Title,
+                "classCard" : "backCard",
+                "image" : back.Image,
+                "imagePosition" : back.ImagePosition,
+                "VideoYT": back.VideoYT,
+                "VideoMP4": back.VideoMP4,
+                "text" : back.Texte,
+                "subtitle" : back.SubTitle
+            }) }}
+        </div>
+    </div>
+</div>
