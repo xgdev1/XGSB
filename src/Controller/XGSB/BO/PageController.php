@@ -4,9 +4,11 @@ namespace App\Controller\XGSB\BO;
 
 use App\Entity\XGSB\Module;
 use App\Entity\XGSB\Page;
+use App\Entity\XGSB\SectionPage;
 use App\Entity\XGSB\TypeModule;
 use App\Form\XGSB\ModuleType;
 use App\Form\XGSB\PageType;
+use App\Form\XGSB\SectionPageType;
 use App\Repository\XGSB\ModuleRepository;
 use App\Repository\XGSB\PageRepository;
 use App\Repository\XGSB\TypeModuleRepository;
@@ -15,12 +17,61 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Stopwatch\Section;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[Route('/BO/page', name:"xgsb_bo_page_")]
 class PageController extends AbstractController
 {
 
+    /**
+     * @param Page                   $page
+     * @param Request                $request
+     * @param EntityManagerInterface $manager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    #[Route('/{id}/add-section', name: 'addSection')]
+    public function addSection(Page $page, Request $request, EntityManagerInterface $manager){
+        $sectionPage=new SectionPage();
+        $sectionPage->setPage($page);
+        $form = $this->createForm(SectionPageType::class,$sectionPage);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $last_ordre=100;
+            foreach($page->getSectionsPages() as $s){
+                $last_ordre=$s->getOrdre()+100;
+            }
+            $sectionPage->setOrdre($last_ordre);
+            $manager->persist($sectionPage);
+            $manager->flush();
+            return $this->redirectToRoute('xgsb_bo_page_show', ['id'=>$sectionPage->getPage()->getId()]);
+        }
+        return $this->render('xgsb/bo/page/addSection.html.twig', [
+            'form' => $form->createView(),
+            'page'=>$page,
+        ]);
+    }
+
+    /**
+     * @param SectionPage            $sectionPage
+     * @param Request                $request
+     * @param EntityManagerInterface $manager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    #[Route('/{id}/edit-section', name: 'editSection')]
+    public function editSection(SectionPage $sectionPage, Request $request, EntityManagerInterface $manager){{
+        $form = $this->createForm(SectionPageType::class,$sectionPage);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $manager->flush();
+            return $this->redirectToRoute('xgsb_bo_page_show', ['id'=>$sectionPage->getPage()->getId()]);
+        }
+        return $this->render('xgsb/bo/page/editSection.html.twig', [
+            'form'      => $form->createView(),
+            'page'      => $sectionPage->getPage(),
+            'section'   => $sectionPage,
+        ]);
+    }}
     #[Route('/{id}/add-module/{tm}', name: 'addModule')]
     public function addModule(Page $page, TypeModule $tm,Request $request, EntityManagerInterface $manager,
                               ModuleRepository $moduleRepository){
@@ -31,19 +82,17 @@ class PageController extends AbstractController
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()){
                 $nOrder=0;
-
-                $lastModule=$moduleRepository->findLastOrder($page);
-                if(empty($lastModule))
+                $section=$module->getSectionPage();
+                if($section->getModules()->count()==1)
                 {
                     $lOrder=0;
                 }
-                elseif(is_array($lastModule))
-                {
-                    $lOrder=$lastModule[0]->getOrdre();
-                }
                 else
                 {
-                    $lOrder=$lastModule->getOrdre();
+                    $lOrder=0;
+                    foreach($section->getModules() as $module){
+                        $lOrder=$module->getOrdre();
+                    }
                 }
                 if(empty($lOrder)){
                     $nOrder=10;

@@ -1,0 +1,45 @@
+{% extends 'xgsb/bo/layout.html.twig' %}
+
+{% block title %}Manage Menu - XGSB Backoffice{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h1>Menu index</h1>
+            <a href="{{ path('xgsb_bo_menu_new') }}" class="btn btn-primary align-self-center">
+                Créer un nouveau menu
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for menu in menus %}
+                <tr>
+                    <td>{{ menu.id }}</td>
+                    <td>{{ menu.Name }}</td>
+                    <td>
+                        <a href="{{ path('xgsb_bo_menu_edit', {'id': menu.id}) }}" class="btn btn-primary"
+                           data-bs-toggle="tooltip" data-bs-title="Modifier" data-bs-placement="top">
+                            <span class="icon-edit"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

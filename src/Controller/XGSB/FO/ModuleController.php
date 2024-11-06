@@ -22,6 +22,8 @@ class ModuleController extends AbstractController
                 return $this->makeTitle($module);
             case 'video':
                 return $this->makeVideo($module);
+            case 'widget':
+                return $this->makeWidget($module);
         }
     }
 
@@ -81,6 +83,15 @@ class ModuleController extends AbstractController
         return $this->render('xgsb/fo/module/_video.html.twig',[
             "title"=>$title,
             "video"=>$video,
+        ]);
+    }
+
+    public function makeWidget(Module $module){
+        $Widget=$module->getParam('widget');
+        $title=$module->getParam('Title');
+        return $this->render('xgsb/fo/module/_video.html.twig',[
+            "title"=>$title,
+            "widget"=>$Widget,
         ]);
     }
 

@@ -37,6 +37,9 @@ class Module
     #[ORM\JoinColumn(nullable: false)]
     private ?TypeModule $Type = null;
 
+    #[ORM\ManyToOne(inversedBy: 'modules')]
+    private ?SectionPage $sectionPage = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -126,6 +129,18 @@ class Module
     public function setType(?TypeModule $Type): static
     {
         $this->Type = $Type;
+
+        return $this;
+    }
+
+    public function getSectionPage(): ?SectionPage
+    {
+        return $this->sectionPage;
+    }
+
+    public function setSectionPage(?SectionPage $sectionPage): static
+    {
+        $this->sectionPage = $sectionPage;
 
         return $this;
     }

@@ -48,10 +48,17 @@ class Page
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Pages')]
+    private ?Menu $menu = null;
+
+    #[ORM\OneToMany(targetEntity: SectionPage::class, mappedBy: 'Page', orphanRemoval: true)]
+    private Collection $SectionsPages;
+
     public function __construct()
     {
         $this->childs = new ArrayCollection();
         $this->Modules = new ArrayCollection();
+        $this->SectionsPages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -211,6 +218,48 @@ class Page
     public function setSlug(?string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getMenu(): ?Menu
+    {
+        return $this->menu;
+    }
+
+    public function setMenu(?Menu $menu): static
+    {
+        $this->menu = $menu;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SectionPage>
+     */
+    public function getSectionsPages(): Collection
+    {
+        return $this->SectionsPages;
+    }
+
+    public function addSectionsPage(SectionPage $sectionsPage): static
+    {
+        if (!$this->SectionsPages->contains($sectionsPage)) {
+            $this->SectionsPages->add($sectionsPage);
+            $sectionsPage->setPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSectionsPage(SectionPage $sectionsPage): static
+    {
+        if ($this->SectionsPages->removeElement($sectionsPage)) {
+            // set the owning side to null (unless already changed)
+            if ($sectionsPage->getPage() === $this) {
+                $sectionsPage->setPage(null);
+            }
+        }
 
         return $this;
     }

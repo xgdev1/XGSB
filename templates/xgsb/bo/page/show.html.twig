@@ -1,6 +1,6 @@
 {% extends 'xgsb/bo/layout.html.twig' %}
 
-{% block title %}XGSB Backoffice - Nouvelle Page{% endblock %}
+{% block title %}Gestion de la page {{ page.Name }} - XGSB Backoffice{% endblock %}
 
 {% block body %}
 <div class="card">
@@ -22,52 +22,76 @@
             <div class="col-sm-12 col-md-12 col-lg-8">
                 <div class="card">
                     <div class="card-header text-bg-primary d-flex justify-content-between">
-                        <h2>Struture de la page</h2>
+                        <h2>Structure de la page</h2>
+                        <div>
+                            <a href="{{ path('xgsb_bo_page_addSection', {'id': page.id}) }}" class="btn btn-secondary">
+                                Ajouter une section
+                            </a>
+                        </div>
                     </div>
                     <div class="body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Ordre</th>
-                                    <th>Nom du module</th>
-                                    <th>Type de bloc</th>
-                                    <th>Largeur</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for module in page.Modules %}
-                                <tr>
-                                    <td class="justify-content-around">
-                                        {{ module.Ordre }}
-                                        {% if not loop.first %}
-                                            <a href="{{ path("xgsb_bo_page_upmodule",{"id": module.id}) }}"
-                                               class="text-decoration-none"><span class="icon
-                                            icon-arrow-up"></span></a>
-                                        {% endif %}
-                                        {% if not loop.last %}
-                                            <a href="#" class="text-decoration-none">
-                                                <span class="icon icon-arrow-down"></span>
+                            {% for section in page.SectionsPages %}
+                                <div class="card m-3">
+                                    <div class="card-header d-flex justify-content-between align-content-center">
+                                        <h3>{{ section.Name }}</h3>
+                                        <div>
+                                            <a href="{{ path('xgsb_bo_page_editSection', {'id': section.id}) }}"
+                                               class="btn btn-outline-primary">
+                                                Modifier
                                             </a>
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ module.Title }}</td>
-                                    <td>{{ module.Type.Name }}</td>
-                                    <td>{{ module.ColWidth }}</td>
-                                    <td>
-                                        <a href="{{ path("xgsb_bo_page_editmodule",{"id": module.id}) }}"
-                                           class="btn btn-outline-primary">
-                                            Modifier
-                                        </a>
-                                        <a href="{{ path("xgsb_bo_page_delmodule",{"id": module.id}) }}"
-                                           class="btn btn-outline-danger">
-                                            Supprimer
-                                        </a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                                            <a href="#"
+                                               class="btn btn-outline-danger">
+                                                Supprimer
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Ordre</th>
+                                                    <th>Nom du module</th>
+                                                    <th>Type de bloc</th>
+                                                    <th>Largeur</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for module in section.modules %}
+                                            <tr>
+                                                <td class="justify-content-around">
+                                                    {{ module.Ordre }}
+                                                    {% if not loop.first %}
+                                                        <a href="{{ path("xgsb_bo_page_upmodule",{"id": module.id}) }}"
+                                                           class="text-decoration-none"><span class="icon
+                                                        icon-arrow-up"></span></a>
+                                                    {% endif %}
+                                                    {% if not loop.last %}
+                                                        <a href="#" class="text-decoration-none">
+                                                            <span class="icon icon-arrow-down"></span>
+                                                        </a>
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{ module.Title }}</td>
+                                                <td>{{ module.Type.Name }}</td>
+                                                <td>{{ module.ColWidth }}</td>
+                                                <td>
+                                                    <a href="{{ path("xgsb_bo_page_editmodule",{"id": module.id}) }}"
+                                                       class="btn btn-outline-primary">
+                                                        Modifier
+                                                    </a>
+                                                    <a href="{{ path("xgsb_bo_page_delmodule",{"id": module.id}) }}"
+                                                       class="btn btn-outline-danger">
+                                                        Supprimer
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            {% endfor %}
                     </div>
                 </div>
             </div>

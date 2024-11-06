@@ -4,12 +4,15 @@ namespace App\Form\XGSB;
 
 use App\Entity\XGSB\Module;
 use App\Entity\XGSB\Page;
+use App\Entity\XGSB\SectionPage;
 use App\Entity\XGSB\TypeModule;
 use App\Form\XGSB\ParamModuleType\ParamBannerType;
 use App\Form\XGSB\ParamModuleType\ParamCardType;
 use App\Form\XGSB\ParamModuleType\ParamImageTextType;
 use App\Form\XGSB\ParamModuleType\ParamTitleType;
 use App\Form\XGSB\ParamModuleType\ParamVideoType;
+use App\Form\XGSB\ParamModuleType\ParamWidgetType;
+use App\Repository\XGSB\SectionPageRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -45,6 +48,14 @@ class ModuleType extends AbstractType
         /** @var Module $module */
         $module = $event->getData();
         $form = $event->getForm();
+        $form->add('sectionPage', EntityType::class, [
+           "class" => SectionPage::class,
+           "query_builder" => function (SectionPageRepository $repo) use ($module) {
+                return $repo->createQueryBuilder('s')->andWhere("s.Page=:page")->setParameter("page", $module->getPage()->getId())
+                    ->addOrderBy("s.Ordre","ASC");
+           },
+           "choice_label" => "Name",
+        ]);
         switch ($module->getType()->getCode()){
             case 'banner':
                 $form->add('parameters', ParamBannerType::class,[
@@ -69,6 +80,11 @@ class ModuleType extends AbstractType
             case 'video':
                 $form->add('parameters', ParamVideoType::class,[
                     'label' => 'Paramètres pour le module video'
+                ]);
+                break;
+            case 'widget':
+                $form->add('parameters', ParamWidgetType::class,[
+                    'label' => 'Paramètres pour le module widget'
                 ]);
                 break;
             default:
