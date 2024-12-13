@@ -4,11 +4,11 @@
             {{ title }}
         </div>
     {% endif %}
-    {% if imagePosition=='top' and image is not empty %}
+    {% if imagePosition=='top' and (image is not empty or VideoMP4 is not empty) %}
         {{ include('xgsb/fo/module/helper/_card-media.html.twig',{"mediaClass": 'card-img-top',
             'ratio':"ratio-3x2"}) }}
     {% endif %}
-    {% if imagePosition=='left' and image is not empty %}
+    {% if imagePosition=='left' and (image is not empty or VideoMP4 is not empty) %}
         <div class="row g-0">
             <div class="col-md-4">
                 {{ include('xgsb/fo/module/helper/_card-media.html.twig',{"mediaClass": 'img-fluid rounded-start',
@@ -18,7 +18,7 @@
                 {{ include('xgsb/fo/module/helper/_card-body.html.twig') }}
             </div>
         </div>
-    {% elseif imagePosition=='right' and image is not empty %}
+    {% elseif imagePosition=='right' and (image is not empty or VideoMP4 is not empty) %}
         <div class="row g-0">
             <div class="col-md-8">
                 {{ include('xgsb/fo/module/helper/_card-body.html.twig') }}
@@ -30,7 +30,7 @@
         </div>
     {% else %}
         {{ include('xgsb/fo/module/helper/_card-body.html.twig') }}
-        {% if imagePosition=='bottom' and image is not empty %}
+        {% if imagePosition=='bottom' and (image is not empty or VideoMP4 is not empty) %}
             {{ include('xgsb/fo/module/helper/_card-media.html.twig',{"mediaClass": 'card-img-bottom', 'ratio':"ratio-3x2"}) }}
         {% endif %}
     {% endif %}
