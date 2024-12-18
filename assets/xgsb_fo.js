@@ -5,5 +5,7 @@ import 'bootstrap';
 console.log('This log frontoffice');
 
 $(document).ready(function (){
-  $("video").each($(this).get(0).play());
+    $("video").each(function() {
+      $(this).get(0).play()
+  });
 })
