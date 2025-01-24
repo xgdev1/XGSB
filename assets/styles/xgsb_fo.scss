@@ -87,3 +87,9 @@ h1.module-title{
 .ratio-2x3{
   --bs-aspect-ratio: 139%;
 }
+
+w-lg-auto{
+  @media (min-width: 991px){
+    width: auto;
+  }
+}
